@@ -15,21 +15,21 @@ import com.mycrm.service.CustomerService;
 
 @Repository
 public class CustomerImplementation implements CustomerService {
-	
+
 	private SessionFactory sessionFactory;
 	private Session session;
-	
+
 	@Autowired
 	public CustomerImplementation(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-		
+
 		try {
 			session = sessionFactory.getCurrentSession();
 		} catch (HibernateException e) {
 			session = sessionFactory.openSession();
 		}
 	}
-	
+
 	@Transactional
 	public List<Customer> findAll() {
 		Transaction transaction = session.beginTransaction();
@@ -37,7 +37,7 @@ public class CustomerImplementation implements CustomerService {
 		transaction.commit();
 		return theCustomers;
 	}
-	
+
 	@Transactional
 	public Customer findById(int theId) {
 		Customer theCustomer = new Customer();
@@ -46,14 +46,14 @@ public class CustomerImplementation implements CustomerService {
 		transaction.commit();
 		return theCustomer;
 	}
-	
+
 	@Transactional
 	public void save(Customer thCustomer) {
 		Transaction transaction = session.beginTransaction();
 		session.saveOrUpdate(thCustomer);
 		transaction.commit();
 	}
-	
+
 	@Transactional
 	public void deleteById(int theId) {
 		Customer theCustomer = new Customer();

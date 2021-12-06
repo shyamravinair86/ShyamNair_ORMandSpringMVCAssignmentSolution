@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.wiring.ClassNameBeanWiringInfoResolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,7 +41,7 @@ public class CustomerController {
 		return "Customer-Form";
 	}
 
-	@RequestMapping("/save")
+	@PostMapping("/save")
 	public String save(@RequestParam("id") int theId, @RequestParam("firstName") String theFirstName,
 			@RequestParam("lastName") String theLastName, @RequestParam("email") String theEmail, Model theModel) {
 		Customer theCustomer;
